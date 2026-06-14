@@ -10,6 +10,8 @@ import { Route, Router, Routes } from 'react-router-dom'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import Debts from './pages/debts/Debts'
+import AddTransaction from './pages/transactions/AddTransaction'
+import EditTransaction from './pages/transactions/EditTransaction'
 
 
 function App() {
@@ -54,6 +56,22 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route
+  path="/transactions/add"
+  element={
+    <ProtectedRoute>
+      <AddTransaction />
+    </ProtectedRoute>
+  }
+/>
+<Route
+  path="/transactions/edit/:id"
+  element={
+    <ProtectedRoute>
+      <EditTransaction />
+    </ProtectedRoute>
+  }
+/>
       </Routes>
     </div>
   )

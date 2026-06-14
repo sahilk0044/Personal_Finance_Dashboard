@@ -75,8 +75,11 @@ export const getTransactions = async (req, res, next) => {
     }
 
     if (category) {
-      query.category = category;
-    }
+  query.category = {
+    $regex: `^${category}$`,
+    $options: "i",
+  };
+}
 
     if (startDate || endDate) {
       query.date = {};
@@ -90,12 +93,28 @@ export const getTransactions = async (req, res, next) => {
       }
     }
 
-    if (search) {
-      query.description = {
+ if (search) {
+  query.$or = [
+    {
+      description: {
         $regex: search,
         $options: "i",
-      };
-    }
+      },
+    },
+    {
+      category: {
+        $regex: search,
+        $options: "i",
+      },
+    },
+    {
+      paymentMethod: {
+        $regex: search,
+        $options: "i",
+      },
+    },
+  ];
+}
 
     const skip = (Number(page) - 1) * Number(limit);
 
