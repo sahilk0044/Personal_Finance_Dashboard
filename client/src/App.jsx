@@ -12,6 +12,9 @@ import Register from './pages/auth/Register'
 import Debts from './pages/debts/Debts'
 import AddTransaction from './pages/transactions/AddTransaction'
 import EditTransaction from './pages/transactions/EditTransaction'
+import AddDebt from './pages/debts/AddDebt'
+import AddPayment from './pages/debts/AddPayment'
+import DebtPayments from './pages/debts/DebtPayments'
 
 
 function App() {
@@ -56,6 +59,33 @@ function App() {
           </ProtectedRoute>
         }
       />
+
+      <Route
+  path="/debts/add"
+  element={
+    <ProtectedRoute>
+      <AddDebt />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/debts/:id/payment"
+  element={
+    <ProtectedRoute>
+      <AddPayment />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/debts/:id/payments"DebtPayments
+  element={
+    <ProtectedRoute>
+      <DebtPayments />
+    </ProtectedRoute>
+  }
+/>
       <Route
   path="/transactions/add"
   element={

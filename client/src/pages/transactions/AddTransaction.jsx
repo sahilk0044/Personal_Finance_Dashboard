@@ -9,18 +9,7 @@ import {
 
 const AddTransaction = () => {
   const navigate = useNavigate();
-  const transactionData = {
-  ...formData,
-  category:
-    formData.category
-      .trim()
-      .charAt(0)
-      .toUpperCase() +
-    formData.category
-      .trim()
-      .slice(1)
-      .toLowerCase(),
-};
+  
 
 
   const [formData, setFormData] =
@@ -32,6 +21,19 @@ const AddTransaction = () => {
       date: "",
       paymentMethod: "UPI",
     });
+
+    const transactionData = {
+  ...formData,
+  category:
+    formData.category
+      .trim()
+      .charAt(0)
+      .toUpperCase() +
+    formData.category
+      .trim()
+      .slice(1)
+      .toLowerCase(),
+};
 
   const [loading, setLoading] =
     useState(false);
