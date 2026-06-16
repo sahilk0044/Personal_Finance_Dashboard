@@ -49,6 +49,26 @@ const Sidebar = () => {
                 >
                     Budgets
                 </NavLink>
+                <NavLink
+                    to="/alerts"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "bg-blue-100 text-blue-600 px-3 py-2 rounded-lg"
+                            : "px-3 py-2 rounded-lg hover:bg-gray-100"
+                    }
+                >
+                    Alerts
+                </NavLink>
+                <NavLink
+                    to="/reports"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "bg-blue-100 text-blue-600 px-3 py-2 rounded-lg"
+                            : "px-3 py-2 rounded-lg hover:bg-gray-100"
+                    }
+                >
+                    Reports
+                </NavLink>
             </nav>
         </aside>
     );

@@ -21,6 +21,8 @@ import { getDebtSummary, } from "../../services/debtService";
 import { getAnalytics, } from "../../services/dashboardService";
 import {getFinancialHealthScore,} from "../../services/dashboardService";
 import {getBudgetAnalytics,} from "../../services/budgetService";
+import { getAlerts } from "../../services/alertService";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [summary, setSummary] = useState(null);
@@ -34,6 +36,8 @@ const Dashboard = () => {
   const [categoryBreakdown, setCategoryBreakdown] = useState([]);
 
   const [budgetAnalytics,setBudgetAnalytics] =useState([]);
+
+  const [alerts, setAlerts] =useState([]);
 
   
 
@@ -89,7 +93,12 @@ const fetchData = async () => {
     setBudgetAnalytics(
       budgetData.budgets
     );
-     console.log(healthData.breakdown);
+     const alertData =
+  await getAlerts();
+
+setAlerts(
+  alertData.data.alerts
+);
 
   } catch (error) {
     console.error(error);
@@ -253,7 +262,48 @@ if (
               />
 
             </div>
+            <div className="bg-white p-6 rounded-xl shadow">
+
+  <h2 className="text-xl font-semibold mb-4">
+    Recent Alerts
+  </h2>
+
+  {alerts.length === 0 ? (
+    <p className="text-gray-500">
+      No alerts
+    </p>
+  ) : (
+    <div className="space-y-3">
+
+      {alerts
+        .slice(0, 3)
+        .map((alert) => (
+          <div
+            key={alert._id}
+            className="border-b pb-2"
+          >
+            <p className="font-medium">
+              {alert.title}
+            </p>
+
+            <p className="text-sm text-gray-600">
+              {alert.message}
+            </p>
           </div>
+        ))}
+
+    </div>
+  )}
+
+</div>
+<Link
+  to="/alerts"
+  className="text-blue-600 text-sm mt-3 inline-block"
+>
+  View All Alerts
+</Link>
+          </div>
+          
         ))}
     </div>
   )}

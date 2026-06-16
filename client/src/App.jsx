@@ -18,6 +18,8 @@ import DebtPayments from './pages/debts/DebtPayments'
 import Budgets from './pages/budgets/Budgets'
 import AddBudget from './pages/budgets/AddBudget'
 import EditBudget from './pages/budgets/EditBudget'
+import Alerts from './pages/alerts/alerts'
+import Reports from './pages/reports/Reports'
 
 
 function App() {
@@ -118,6 +120,15 @@ function App() {
 <Route
   path="/budgets/edit/:id"
   element={<EditBudget />}
+/>
+
+<Route
+  path="/alerts"
+  element={<Alerts />}
+/>
+<Route
+  path="/reports"
+  element={<Reports />}
 />
       </Routes>
     </div>

@@ -14,6 +14,8 @@ import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 import dashboardRouter from "./routes/dashboardRoutes.js";
 import budgetRouter from "./routes/BudgetRoutes.js";
 import analyticsRouter from "./routes/analyticsRoutes.js";
+import alertRouter from "./routes/alertRoutes.js";
+import reportRouter from "./routes/reportRoutes.js";
 
 dotenv.config();
 
@@ -57,6 +59,8 @@ app.use("/api/debts", debtRouter);
 app.use("/api/dashboard",dashboardRouter);
 app.use("/api/budgets",budgetRouter);
 app.use("/api/analytics",analyticsRouter);
+app.use("/api/alerts",alertRouter);
+app.use("/api/reports",reportRouter);
 
 // Error Handling Middleware
 app.use(notFound);
