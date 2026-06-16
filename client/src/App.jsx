@@ -15,6 +15,9 @@ import EditTransaction from './pages/transactions/EditTransaction'
 import AddDebt from './pages/debts/AddDebt'
 import AddPayment from './pages/debts/AddPayment'
 import DebtPayments from './pages/debts/DebtPayments'
+import Budgets from './pages/budgets/Budgets'
+import AddBudget from './pages/budgets/AddBudget'
+import EditBudget from './pages/budgets/EditBudget'
 
 
 function App() {
@@ -101,6 +104,20 @@ function App() {
       <EditTransaction />
     </ProtectedRoute>
   }
+/>
+
+<Route
+  path="/budgets"
+  element={<Budgets />}
+/>
+
+<Route
+  path="/budgets/add"
+  element={<AddBudget />}
+/>
+<Route
+  path="/budgets/edit/:id"
+  element={<EditBudget />}
 />
       </Routes>
     </div>

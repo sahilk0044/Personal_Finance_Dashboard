@@ -1,5 +1,18 @@
 import mongoose from "mongoose";
 
+const VALID_CATEGORIES = [
+  "Food",
+  "Travel",
+  "Rent",
+  "Shopping",
+  "Savings",
+  "Bills",
+  "Entertainment",
+  "Healthcare",
+  "Education",
+  "Other",
+];
+
 const transactionSchema = new mongoose.Schema(
   {
     user: {
@@ -15,11 +28,12 @@ const transactionSchema = new mongoose.Schema(
       required: [true, "Transaction type is required"],
     },
 
-    category: {
-      type: String,
-      required: [true, "Category is required"],
-      trim: true,
-    },
+     category: {
+    type: String,
+    required: [true, "Category is required"],
+    trim: true,
+    enum: VALID_CATEGORIES,
+  },
 
     amount: {
       type: Number,

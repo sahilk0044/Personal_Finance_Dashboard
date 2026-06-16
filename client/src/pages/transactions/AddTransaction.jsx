@@ -64,6 +64,19 @@ const AddTransaction = () => {
     }
   };
 
+ const CATEGORIES = [
+  "Food",
+  "Travel",
+  "Rent",
+  "Shopping",
+  "Savings",
+  "Bills",
+  "Entertainment",
+  "Healthcare",
+  "Education",
+  "Other",
+];
+
   return (
     <MainLayout>
       <h1 className="text-3xl font-bold mb-6">
@@ -89,14 +102,26 @@ const AddTransaction = () => {
           </option>
         </select>
 
-        <input
-          type="text"
-          name="category"
-          placeholder="Category"
-          value={formData.category}
-          onChange={handleChange}
-          className="w-full border p-3 rounded"
-        />
+        <select
+  name="category"
+  value={formData.category}
+  onChange={handleChange}
+  required
+  className="w-full border p-3 rounded"
+>
+  <option value="">
+    Select Category
+  </option>
+
+  {CATEGORIES.map((category) => (
+    <option
+      key={category}
+      value={category}
+    >
+      {category}
+    </option>
+  ))}
+</select>
 
         <input
           type="number"

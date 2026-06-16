@@ -20,6 +20,7 @@ import { getDashboardSummary, getRecentActivity, } from "../../services/dashboar
 import { getDebtSummary, } from "../../services/debtService";
 import { getAnalytics, } from "../../services/dashboardService";
 import {getFinancialHealthScore,} from "../../services/dashboardService";
+import {getBudgetAnalytics,} from "../../services/budgetService";
 
 const Dashboard = () => {
   const [summary, setSummary] = useState(null);
@@ -32,72 +33,83 @@ const Dashboard = () => {
   const [incomeVsExpense, setIncomeVsExpense] = useState([]);
   const [categoryBreakdown, setCategoryBreakdown] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const [budgetAnalytics,setBudgetAnalytics] =useState([]);
 
-  const fetchData =
-    async () => {
-      try {
-        const dashboardData =
-          await getDashboardSummary();
+  
 
-        const debtData =
-          await getDebtSummary();
+const fetchData = async () => {
+  try {
+    const dashboardData =
+      await getDashboardSummary();
 
-        setSummary(
-          dashboardData.summary
-        );
+    const debtData =
+      await getDebtSummary();
 
-        setDebtSummary(
-          debtData.summary
-        );
-
-        const recentData =
-          await getRecentActivity();
-
-        setRecentTransactions(
-          recentData.recentTransactions
-        );
-
-        setRecentDebts(
-          recentData.recentDebts
-        );
-
-        const healthData =
-  await getFinancialHealthScore();
-
-setHealthScore(
-  healthData
-);
-
-        const analyticsData =
-          await getAnalytics();
-
-          
-
-        setIncomeVsExpense(
-          analyticsData.incomeVsExpense
-        );
-
-        setCategoryBreakdown(
-          analyticsData.categoryBreakdown
-        );
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-  if (
-    !summary ||
-    !debtSummary
-  ) {
-    return (
-      <MainLayout>
-        <p>Loading...</p>
-      </MainLayout>
+    setSummary(
+      dashboardData.summary
     );
+
+    setDebtSummary(
+      debtData.summary
+    );
+
+    const recentData =
+      await getRecentActivity();
+
+    setRecentTransactions(
+      recentData.recentTransactions
+    );
+
+    setRecentDebts(
+      recentData.recentDebts
+    );
+
+    const healthData =
+      await getFinancialHealthScore();
+
+    setHealthScore(
+      healthData
+    );
+
+    const analyticsData =
+      await getAnalytics();
+
+    setIncomeVsExpense(
+      analyticsData.incomeVsExpense
+    );
+
+    setCategoryBreakdown(
+      analyticsData.categoryBreakdown
+    );
+
+    // Budget Analytics
+    const budgetData =
+      await getBudgetAnalytics();
+
+    setBudgetAnalytics(
+      budgetData.budgets
+    );
+     console.log(healthData.breakdown);
+
+  } catch (error) {
+    console.error(error);
   }
+};
+
+useEffect(() => {
+  fetchData();
+}, []);
+
+if (
+  !summary ||
+  !debtSummary
+) {
+  return (
+    <MainLayout>
+      <p>Loading...</p>
+    </MainLayout>
+  );
+}
 
   return (
     <MainLayout>
@@ -191,6 +203,63 @@ setHealthScore(
   </div>
 
 )}
+
+<div className="bg-white p-6 rounded-xl shadow">
+  <h2 className="text-xl font-semibold mb-4">
+    Budget Overview
+  </h2>
+
+  {budgetAnalytics.length === 0 ? (
+    <p className="text-gray-500">
+      No budgets created yet
+    </p>
+  ) : (
+    <div className="space-y-4">
+
+      {budgetAnalytics
+        .slice(0, 5)
+        .map((budget) => (
+          <div
+            key={budget._id}
+          >
+            <div className="flex justify-between mb-1">
+              <span>
+                {budget.category}
+              </span>
+
+              <span>
+                {budget.percentageUsed}%
+              </span>
+            </div>
+
+            <div className="w-full bg-gray-200 rounded-full h-2">
+
+              <div
+                className={`h-2 rounded-full ${
+                  budget.status ===
+                  "Exceeded"
+                    ? "bg-red-500"
+                    : budget.status ===
+                      "Warning"
+                    ? "bg-yellow-500"
+                    : "bg-green-500"
+                }`}
+                style={{
+                  width: `${Math.min(
+                    budget.percentageUsed,
+                    100
+                  )}%`,
+                }}
+              />
+
+            </div>
+          </div>
+        ))}
+    </div>
+  )}
+</div>
+
+
 <div className="bg-white p-6 rounded-xl shadow mt-8">
 
   <h2 className="text-xl font-semibold mb-4">
