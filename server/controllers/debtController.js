@@ -1,4 +1,4 @@
-import Debt from "../models/Debt.js";
+import Debt from "../models/debt.js";
 import DebtPayment from "../models/DebtPayment.js";
 
 /*

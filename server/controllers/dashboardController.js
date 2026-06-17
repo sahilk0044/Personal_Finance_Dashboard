@@ -1,5 +1,5 @@
 import Transaction from "../models/Transaction.js";
-import Debt from "../models/Debt.js";
+import Debt from "../models/debt.js";
 import Budget from "../models/Budget.js";
 import {
 calculateFinancialHealth,} from "../utils/financialHealth.js";

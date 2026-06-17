@@ -7,7 +7,7 @@ import {
   updateBudget,
   deleteBudget,
   getBudgetAnalytics,
-} from "../controllers/budgetController.js";
+} from "../controllers/BudgetController.js";
 
 import { protect } from "../middlewares/authMiddleware.js";
 
