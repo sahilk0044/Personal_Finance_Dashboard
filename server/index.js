@@ -8,14 +8,12 @@ import connectDB from "./config/db.js";
 import authRouter from "./routes/authRoutes.js";
 import transactionRouter from "./routes/transactionRoutes.js";
 import debtRouter from "./routes/debtRoutes.js";
-
-
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 import dashboardRouter from "./routes/dashboardRoutes.js";
-import budgetRouter from "./routes/BudgetRoutes.js";
 import analyticsRouter from "./routes/analyticsRoutes.js";
 import alertRouter from "./routes/alertRoutes.js";
 import reportRouter from "./routes/reportRoutes.js";
+import budgetRouter from "./routes/BudgetRoutes.js";
 
 dotenv.config();
 
