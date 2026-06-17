@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema(
       default: "",
     },
 
-    currency: {
+   currency: {
       type: String,
       default: "INR",
       enum: [
@@ -63,6 +63,9 @@ const userSchema = new mongoose.Schema(
     lastLogin: {
       type: Date,
     },
+    resetPasswordToken: String,
+
+resetPasswordExpire: Date,
   },
   {
     timestamps: true,

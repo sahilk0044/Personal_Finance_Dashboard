@@ -1,5 +1,7 @@
 import User from "../models/User.js";
 import generateToken from "../utils/generateToken.js";
+import crypto from "crypto";
+import nodemailer from "nodemailer";
 
 /*
   @desc    Register User
@@ -195,3 +197,122 @@ export const changePassword = async (req, res, next) => {
     next(error);
   }
 };
+
+
+
+export const forgotPassword =
+  async (req, res, next) => {
+    try {
+      const { email } = req.body;
+
+      const user =
+        await User.findOne({
+          email,
+        });
+
+      if (!user) {
+        res.status(404);
+        throw new Error(
+          "User not found"
+        );
+      }
+
+      const resetToken =
+        crypto
+          .randomBytes(32)
+          .toString("hex");
+
+      user.resetPasswordToken =
+        resetToken;
+
+      user.resetPasswordExpire =
+        Date.now() +
+        15 * 60 * 1000;
+
+      await user.save();
+
+      const resetUrl =
+        `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
+
+      const transporter =
+        nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user:
+              process.env.EMAIL_USER,
+            pass:
+              process.env.EMAIL_PASS,
+          },
+        });
+
+      await transporter.sendMail({
+        from:
+          process.env.EMAIL_USER,
+        to: user.email,
+        subject:
+          "Finora Password Reset",
+        html: `
+          <h2>Password Reset</h2>
+          <p>Click the link below to reset your password:</p>
+          <a href="${resetUrl}">
+            Reset Password
+          </a>
+          <p>This link expires in 15 minutes.</p>
+        `,
+      });
+
+      res.json({
+        success: true,
+        message:
+          "Password reset link sent",
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  export const resetPassword =
+  async (req, res, next) => {
+    try {
+      const { token } =
+        req.params;
+
+      const { password } =
+        req.body;
+
+      const user =
+        await User.findOne({
+          resetPasswordToken:
+            token,
+          resetPasswordExpire: {
+            $gt: Date.now(),
+          },
+        });
+
+      if (!user) {
+        res.status(400);
+        throw new Error(
+          "Invalid or expired token"
+        );
+      }
+
+      user.password =
+        password;
+
+      user.resetPasswordToken =
+        undefined;
+
+      user.resetPasswordExpire =
+        undefined;
+
+      await user.save();
+
+      res.json({
+        success: true,
+        message:
+          "Password reset successful",
+      });
+    } catch (error) {
+      next(error);
+    }
+  };

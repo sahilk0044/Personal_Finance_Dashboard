@@ -20,6 +20,10 @@ import AddBudget from './pages/budgets/AddBudget'
 import EditBudget from './pages/budgets/EditBudget'
 import Alerts from './pages/alerts/alerts'
 import Reports from './pages/reports/Reports'
+import Profile from './pages/auth/Profile'
+import LandingPage from './pages/landing/LandingPage'
+import ForgotPassword from './pages/auth/ForgotPassword'
+import ResetPassword from './pages/auth/ResetPassword'
 
 
 function App() {
@@ -28,6 +32,11 @@ function App() {
   return (
     <div>
       <Routes>
+
+        <Route
+  path="/"
+  element={<LandingPage />}
+/>
       <Route
         path="/login"
         element={<Login />}
@@ -37,6 +46,15 @@ function App() {
         path="/register"
         element={<Register />}
       />
+
+      <Route
+  path="/forgot-password"
+  element={<ForgotPassword />}
+/>
+<Route
+  path="/reset-password/:token"
+  element={<ResetPassword />}
+/>
 
       <Route
         path="/dashboard"
@@ -129,6 +147,10 @@ function App() {
 <Route
   path="/reports"
   element={<Reports />}
+/>
+<Route
+  path="/profile"
+  element={<Profile />}
 />
       </Routes>
     </div>

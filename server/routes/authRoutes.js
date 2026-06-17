@@ -6,6 +6,8 @@ import {
   getUserProfile,
   updateUserProfile,
   changePassword,
+  forgotPassword,
+  resetPassword,
 } from "../controllers/authController.js";
 
 import { protect } from "../middlewares/authMiddleware.js";
@@ -20,5 +22,7 @@ authrouter.post("/login", loginUser);
 authrouter.get("/profile", protect, getUserProfile);
 authrouter.put("/profile", protect, updateUserProfile);
 authrouter.put("/change-password", protect, changePassword);
+authrouter.post("/forgot-password",forgotPassword);
+authrouter.put("/reset-password/:token",resetPassword);
 
 export default authrouter;

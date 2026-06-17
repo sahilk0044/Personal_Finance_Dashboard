@@ -58,7 +58,7 @@ export const getTransactions = async (req, res, next) => {
   try {
     const {
       page = 1,
-      limit = 30,
+      limit = 100,
       type,
       category,
       startDate,

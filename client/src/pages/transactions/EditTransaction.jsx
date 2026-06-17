@@ -53,6 +53,19 @@ const fetchTransaction = async () => {
       paymentMethod: "UPI",
     });
 
+    const CATEGORIES = [
+  "Food",
+  "Travel",
+  "Rent",
+  "Shopping",
+  "Savings",
+  "Bills",
+  "Entertainment",
+  "Healthcare",
+  "Education",
+  "Other",
+];
+
   const [loading, setLoading] =
     useState(false);
 
@@ -70,7 +83,7 @@ const fetchTransaction = async () => {
     try {
       setLoading(true);
 
-     updateTransaction(
+    await updateTransaction(
   id,
   formData
 );
@@ -88,110 +101,282 @@ toast.success(
   };
 
   return (
-    <MainLayout>
-      <h1 className="text-3xl font-bold mb-6">
-        Add Transaction
-      </h1>
+  <MainLayout>
 
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-xl shadow space-y-4 max-w-xl"
+    <div className="max-w-5xl mx-auto">
+
+      <div className="mb-8">
+
+        <h1 className="text-3xl font-bold text-slate-800">
+          Edit Transaction
+        </h1>
+
+        <p className="text-slate-500 mt-2">
+          Update and manage your transaction details.
+        </p>
+
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        {/* Form */}
+
+        <div className="lg:col-span-2">
+
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-5"
+          >
+
+            <div>
+
+              <label className="block text-sm font-medium mb-2">
+                Transaction Type
+              </label>
+
+              <select
+                name="type"
+                value={formData.type}
+                onChange={handleChange}
+                className="w-full border border-slate-200 rounded-xl px-4 py-3"
+              >
+                <option value="income">
+                  Income
+                </option>
+
+                <option value="expense">
+                  Expense
+                </option>
+
+              </select>
+
+            </div>
+
+            <div>
+
+  <label className="block text-sm font-medium mb-2">
+    Category
+  </label>
+
+  <select
+    name="category"
+    value={formData.category}
+    onChange={handleChange}
+    required
+    className="w-full border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+  >
+    <option value="">
+      Select Category
+    </option>
+
+    {CATEGORIES.map((category) => (
+      <option
+        key={category}
+        value={category}
       >
-        <select
-          name="type"
-          value={formData.type}
-          onChange={handleChange}
-          className="w-full border p-3 rounded"
-        >
-          <option value="income">
-            Income
-          </option>
+        {category}
+      </option>
+    ))}
+  </select>
 
-          <option value="expense">
-            Expense
-          </option>
-        </select>
+</div>
 
-        <input
-          type="text"
-          name="category"
-          placeholder="Category"
-          value={formData.category}
-          onChange={handleChange}
-          className="w-full border p-3 rounded"
-        />
+            <div>
 
-        <input
-          type="number"
-          name="amount"
-          placeholder="Amount"
-          value={formData.amount}
-          onChange={handleChange}
-          className="w-full border p-3 rounded"
-        />
+              <label className="block text-sm font-medium mb-2">
+                Amount
+              </label>
 
-        <input
-          type="text"
-          name="description"
-          placeholder="Description"
-          value={formData.description}
-          onChange={handleChange}
-          className="w-full border p-3 rounded"
-        />
+              <input
+                type="number"
+                name="amount"
+                value={formData.amount}
+                onChange={handleChange}
+                className="w-full border border-slate-200 rounded-xl px-4 py-3"
+              />
 
-        <input
-          type="date"
-          name="date"
-          value={formData.date}
-          onChange={handleChange}
-          className="w-full border p-3 rounded"
-        />
+            </div>
 
-        <select
-          name="paymentMethod"
-          value={
-            formData.paymentMethod
-          }
-          onChange={handleChange}
-          className="w-full border p-3 rounded"
-        >
-          <option>
-            Cash
-          </option>
+            <div>
 
-          <option>
-            UPI
-          </option>
+              <label className="block text-sm font-medium mb-2">
+                Description
+              </label>
 
-          <option>
-            Credit Card
-          </option>
+              <input
+                type="text"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                className="w-full border border-slate-200 rounded-xl px-4 py-3"
+              />
 
-          <option>
-            Debit Card
-          </option>
+            </div>
 
-          <option>
-            Net Banking
-          </option>
+            <div>
 
-          <option>
-            Wallet
-          </option>
-        </select>
+              <label className="block text-sm font-medium mb-2">
+                Date
+              </label>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-blue-600 text-white px-6 py-3 rounded"
-        >
-          {loading
-            ? "Editing..."
-            : "Edit Transaction"}
-        </button>
-      </form>
-    </MainLayout>
-  );
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                className="w-full border border-slate-200 rounded-xl px-4 py-3"
+              />
+
+            </div>
+
+            <div>
+
+              <label className="block text-sm font-medium mb-2">
+                Payment Method
+              </label>
+
+              <select
+                name="paymentMethod"
+                value={formData.paymentMethod}
+                onChange={handleChange}
+                className="w-full border border-slate-200 rounded-xl px-4 py-3"
+              >
+                <option>
+                  Cash
+                </option>
+
+                <option>
+                  UPI
+                </option>
+
+                <option>
+                  Credit Card
+                </option>
+
+                <option>
+                  Debit Card
+                </option>
+
+                <option>
+                  Net Banking
+                </option>
+
+                <option>
+                  Wallet
+                </option>
+
+              </select>
+
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-medium transition"
+              >
+                {loading
+                  ? "Updating..."
+                  : "Update Transaction"}
+              </button>
+
+              <button
+                type="button"
+                onClick={() =>
+                  navigate("/transactions")
+                }
+                className="border border-slate-300 px-6 py-3 rounded-xl hover:bg-slate-50 transition"
+              >
+                Cancel
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+        {/* Preview */}
+
+        <div>
+
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 lg:sticky lg:top-24">
+
+            <h3 className="text-lg font-semibold mb-5">
+              Transaction Preview
+            </h3>
+
+            <div className="space-y-4">
+
+              <div>
+                <p className="text-sm text-slate-500">
+                  Type
+                </p>
+
+                <p
+                  className={`font-semibold ${
+                    formData.type === "income"
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }`}
+                >
+                  {formData.type}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm text-slate-500">
+                  Category
+                </p>
+
+                <p className="font-medium">
+                  {formData.category || "-"}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm text-slate-500">
+                  Amount
+                </p>
+
+                <p className="text-2xl font-bold">
+                  ₹{formData.amount || 0}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm text-slate-500">
+                  Payment Method
+                </p>
+
+                <p className="font-medium">
+                  {formData.paymentMethod}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm text-slate-500">
+                  Date
+                </p>
+
+                <p className="font-medium">
+                  {formData.date || "-"}
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </MainLayout>
+);
 };
 
 export default EditTransaction;
