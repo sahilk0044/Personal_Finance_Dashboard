@@ -1,4 +1,4 @@
-# 💰 Finora - Personal Finance Management System
+# 💰 Finora - Personal Finance Dashboard
 
 A full-stack MERN application that helps users manage their personal finances through expense tracking, income management, budgeting, debt monitoring, analytics, financial health insights, and downloadable reports.
 
