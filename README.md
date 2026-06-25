@@ -1,11 +1,11 @@
-# 💰 Finora - Personal Finance Dashboard
+# 💰 BudgetWise - Personal Finance Dashboard
 
 A full-stack MERN application that helps users manage their personal finances through expense tracking, income management, budgeting, debt monitoring, analytics, financial health insights, and downloadable reports.
 
 Built with modern web technologies and designed to provide users with a complete financial management experience rather than a simple expense tracker. 
 
 ---
-Live Demo: https://finora-personal-finance-dashboard-six.vercel.app/
+Live Demo: https://bugetwise-personal-finance-dashboard-six.vercel.app/
 ## 🚀 Features
 
 ### 🔐 Authentication & Security
@@ -63,14 +63,6 @@ Live Demo: https://finora-personal-finance-dashboard-six.vercel.app/
 * Income & Expense Summaries
 * Budget Performance Reports
 
-### 👨‍💼 Admin Panel
-
-* Admin Dashboard
-* User Statistics
-* Financial Insights
-* Alert Management
-
----
 
 ## 🛠️ Tech Stack
 
