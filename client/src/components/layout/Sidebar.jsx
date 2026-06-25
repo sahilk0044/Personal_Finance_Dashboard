@@ -93,7 +93,7 @@ const Sidebar = ({
 
             <div>
               <h1 className="text-3xl font-bold text-indigo-600">
-                Finora
+                BudgetWise
               </h1>
 
               <p className="text-sm text-slate-500 mt-1">
@@ -148,7 +148,7 @@ const Sidebar = ({
           <div className="bg-slate-50 rounded-xl p-4">
 
             <p className="font-semibold text-slate-800">
-              Finora
+              BudgetWise
             </p>
 
             <p className="text-sm text-slate-500 mt-1">

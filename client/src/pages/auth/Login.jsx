@@ -61,7 +61,7 @@ const Login = () => {
       <div className="hidden lg:flex flex-col justify-center bg-gradient-to-br from-indigo-600 to-blue-600 p-12 text-white">
 
         <h1 className="text-5xl font-bold mb-6">
-          Finora
+         BudgetWise
         </h1>
 
         <p className="text-xl leading-relaxed text-indigo-100">

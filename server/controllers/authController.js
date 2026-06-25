@@ -250,7 +250,7 @@ export const forgotPassword =
           process.env.EMAIL_USER,
         to: user.email,
         subject:
-          "Finora Password Reset",
+          "BudgetWise Password Reset",
         html: `
           <h2>Password Reset</h2>
           <p>Click the link below to reset your password:</p>

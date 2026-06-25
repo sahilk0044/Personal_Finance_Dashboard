@@ -19,7 +19,7 @@ const LandingNavbar = () => {
             </div>
 
             <span className="text-2xl font-bold text-slate-900">
-              Finora
+              BudgetWise
             </span>
           </Link>
 

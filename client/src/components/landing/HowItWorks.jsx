@@ -46,7 +46,7 @@ const HowItWorks = () => {
           </h2>
 
           <p className="mt-6 text-lg text-slate-600 max-w-3xl mx-auto">
-            Finora simplifies personal finance management
+            BudgetWise simplifies personal finance management
             through a simple three-step process.
           </p>
 

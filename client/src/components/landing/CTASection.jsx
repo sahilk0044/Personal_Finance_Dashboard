@@ -21,7 +21,7 @@ const CTASection = () => {
         <p className="mt-6 text-lg text-indigo-100 max-w-3xl mx-auto">
           Track expenses, manage budgets, monitor debts,
           generate reports, and improve your financial
-          health with Finora's all-in-one finance dashboard.
+          health with BudgetWise's all-in-one finance dashboard.
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">

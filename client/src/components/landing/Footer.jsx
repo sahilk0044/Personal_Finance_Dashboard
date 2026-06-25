@@ -18,7 +18,7 @@ const Footer = () => {
           <div>
 
             <h2 className="text-3xl font-bold text-indigo-400">
-              Finora
+              BudgetWise
             </h2>
 
             <p className="text-slate-400 mt-4 leading-relaxed">
@@ -131,7 +131,7 @@ const Footer = () => {
         <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
 
           <p className="text-slate-500 text-sm">
-            © {new Date().getFullYear()} Finora.
+            © {new Date().getFullYear()} BudgetWise.
             All rights reserved.
           </p>
 

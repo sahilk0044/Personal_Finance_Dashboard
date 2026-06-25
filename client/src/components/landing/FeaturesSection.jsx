@@ -67,7 +67,7 @@ const FeaturesSection = () => {
           </h2>
 
           <p className="mt-6 text-lg text-slate-600 max-w-3xl mx-auto">
-            Finora provides all the tools required to track expenses,
+            BudgetWise provides all the tools required to track expenses,
             manage budgets, monitor debts, and gain complete control
             over your financial life.
           </p>
